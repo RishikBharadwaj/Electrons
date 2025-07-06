@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ELECTRONS</title>
+    </title>
+    <link rel="icon" href="atom.png" type="image/x-icon">
+    <link rel="stylesheet" href="home.css">
+    <style>
+        :root {
+            --bg-gradient: linear-gradient(135deg, #e0e7ff 0%, #f0fff0 100%);
+            --text-color: #222;
+            --card-bg: #fff;
+            --card-shadow: 0 4px 24px rgba(0,0,0,0.10);
+            --main-gradient: linear-gradient(90deg, #0078d7, #43b581, #a259ec);
+            --slogan-color: #a259ec;
+            --disc-bg: rgba(255,255,255,0.85);
+            --footer-bg: #222;
+            --footer-color: #fff;
+            --link-bg: linear-gradient(90deg, #0078d7 60%, #43b581 100%);
+            --link-hover-bg: linear-gradient(90deg, #43b581 0%, #a259ec 100%);
+            --link-color: #fff;
+            --link-hover-color: #fff;
+        }
+        body.dark-mode {
+            --bg-gradient: linear-gradient(135deg, #181c2f 0%, #232946 100%);
+            --text-color: #f3f6fa;
+            --card-bg: #232946;
+            --card-shadow: 0 4px 24px rgba(67,181,129,0.13);
+            --main-gradient: linear-gradient(90deg, #43b581, #0078d7, #a259ec);
+            --slogan-color: #43b581;
+            --disc-bg: rgba(35,41,70,0.92);
+            --footer-bg: #181c2f;
+            --footer-color: #e0e7ff;
+            --link-bg: linear-gradient(90deg, #232946 60%, #43b581 100%);
+            --link-hover-bg: linear-gradient(90deg, #a259ec 0%, #43b581 100%);
+            --link-color: #fff;
+            --link-hover-color: #fff;
+        }
+        body {
+            background-image: url("eggfre.png");
+            color: var(--text-color);
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', Arial, sans-serif;
+            transition: background 0.6s cubic-bezier(.4,2,.6,1), color 0.4s;
+        }
+        #main {
+            padding-bottom: 1em;
+            animation: fadeInMain 1.2s cubic-bezier(.4,2,.6,1);
+        }
+        @keyframes fadeInMain {
+            from { opacity: 0; transform: translateY(40px);}
+            to { opacity: 1; transform: translateY(0);}
+        }
+        h1 {
+            letter-spacing: 0.1em;
+            background: var(--main-gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            font-weight: bold;
+            text-shadow: 0 2px 8px rgba(67,181,129,0.08);
+            animation: popIn 1s cubic-bezier(.4,2,.6,1);
+        }
+        @keyframes popIn {
+            0% { opacity: 0; transform: scale(0.7);}
+            80% { opacity: 1; transform: scale(1.08);}
+            100% { opacity: 1; transform: scale(1);}
+        }
+        #slogan {
+            color: var(--slogan-color);
+            font-style: italic;
+            text-shadow: 0 1px 8px #e0e7ff;
+            animation: slideInSlogan 1.2s 0.3s cubic-bezier(.4,2,.6,1) backwards;
+            /* removed border or outline if present */
+            border: none;
+            outline: none;
+        }
+        #disc {
+            background: var(--disc-bg);
+            border-radius: 18px;
+            box-shadow: 0 4px 24px rgba(67,181,129,0.10);
+            padding: 1.5em 2em;
+            margin: 2em auto 1.5em auto;
+            max-width: 700px;
+            animation: fadeInDisc 1.3s 0.2s cubic-bezier(.4,2,.6,1) backwards;
+        }
+        @keyframes fadeInDisc {
+            from { opacity: 0; transform: scale(0.95);}
+            to { opacity: 1; transform: scale(1);}
+        }
+        #container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 2em;
+            margin: 2em 0;
+        }
+        .card1, .card2, .card3 {
+            background: var(--card-bg);
+            border-radius: 18px;
+            box-shadow: var(--card-shadow);
+            padding: 1.5em 2em;
+            min-width: 220px;
+            max-width: 270px;
+            transition: transform 0.2s, box-shadow 0.2s;
+            cursor: pointer;
+            text-align: center;
+            animation: cardAppear 1.2s cubic-bezier(.4,2,.6,1);
+        }
+        @keyframes cardAppear {
+            0% { opacity: 0; transform: translateY(60px) scale(0.95);}
+            80% { opacity: 1; transform: translateY(-8px) scale(1.04);}
+            100% { opacity: 1; transform: translateY(0) scale(1);}
+        }
+        .card1:hover, .card2:hover, .card3:hover {
+            transform: translateY(-8px) scale(1.04);
+            box-shadow: 0 8px 32px rgba(67,181,129,0.18);
+            animation: cardBounce 0.3s;
+        }
+        @keyframes cardBounce {
+            0% { transform: translateY(0) scale(1);}
+            50% { transform: translateY(-12px) scale(1.08);}
+            100% { transform: translateY(-8px) scale(1.04);}
+        }
+        .card1 h2, .card2 h2, .card3 h2 {
+            margin: 0.3em 0;
+        }
+        #AuTit {
+            margin-top: 2em;
+            color: #0078d7;
+            letter-spacing: 0.04em;
+        }
+        #AuNam {
+            color: #43b581;
+            font-weight: bold;
+            font-size: 1.1em;
+            margin-bottom: 1em;
+        }
+        img[src="WIN_20250421_09_29_57_Pro.jpg"] {
+            margin: 1em 0 2em 0;
+            border-radius: 18px;
+            box-shadow: 0 4px 24px rgba(162,89,236,0.13);
+            max-width: 90vw;
+            height: auto;
+            animation: fadeInImg 1.5s 0.8s cubic-bezier(.4,2,.6,1) backwards;
+        }
+        @keyframes fadeInImg {
+            from { opacity: 0; filter: blur(8px);}
+            to { opacity: 1; filter: blur(0);}
+        }
+        /* Beautiful links at bottom */
+        .bottom-links {
+            text-align: center;
+            margin: 1.5em 0;
+        }
+        .bottom-links a {
+            margin: 0 1em;
+            color: var(--link-color);
+            background: var(--link-bg);
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 1.1em;
+            padding: 0.5em 1.5em;
+            border-radius: 10px;
+            box-shadow: 0 2px 12px rgba(67,181,129,0.10);
+            transition: background 0.2s, color 0.2s, transform 0.2s;
+            display: inline-block;
+            animation: fadeInLinks 1.3s 0.7s cubic-bezier(.4,2,.6,1) backwards;
+        }
+        @keyframes fadeInLinks {
+            from { opacity: 0; transform: translateY(30px);}
+            to { opacity: 1; transform: translateY(0);}
+        }
+        footer {
+            background: var(--footer-bg);
+            color: var(--footer-color);
+            text-align: center;
+            padding: 1em 0 1.2em 0;
+            font-size: 1em;
+            letter-spacing: 0.04em;
+            border-radius: 18px 18px 0 0;
+            margin-top: 2em;
+            box-shadow: 0 -2px 12px rgba(67,181,129,0.08);
+        }
+        /* Toggle button styles */
+        #mode-toggle {
+            position: static;
+            display: inline-block;
+            margin: 0 0.5em;
+            background: var(--card-bg);
+            color: var(--text-color);
+            border: none;
+            border-radius: 50px;
+            padding: 0.3em 1em;
+            font-size: 1em;
+            font-weight: bold;
+            box-shadow: 0 2px 12px rgba(67,181,129,0.10);
+            cursor: pointer;
+            transition: background 0.2s, color 0.2s, box-shadow 0.2s, transform 0.15s;
+            animation: fadeInToggle 1.2s 0.5s cubic-bezier(.4,2,.6,1) backwards;
+            vertical-align: middle;
+        }
+        #mode-toggle:hover {
+            background: var(--link-hover-bg);
+            color: var(--link-hover-color);
+            box-shadow: 0 6px 24px rgba(162,89,236,0.18);
+            transform: scale(1.08) rotate(-3deg);
+        }
+        .bottom-links a:hover {
+            background: var(--link-hover-bg);
+            color: var(--link-hover-color);
+            transform: translateY(-3px) scale(1.08) rotate(2deg);
+            box-shadow: 0 6px 24px rgba(162,89,236,0.18);
+        }
+        @media (max-width: 700px) {
+            #container {
+                flex-direction: column;
+                gap: 1.2em;
+            }
+            #disc {
+                padding: 1em 0.7em;
+            }
+            .card1, .card2, .card3 {
+                min-width: 0;
+                max-width: 98vw;
+                padding: 1em 0.7em;
+            }
+            #mode-toggle {
+                top: 0.7em;
+                right: 0.7em;
+                font-size: 0.95em;
+                padding: 0.4em 1em;
+            }
+        }
+    #zzz{
+      width: 1000px;
+      text-align: center;
+    }
+    #zzz:hover{
+      background-color: rgba(0, 88, 77, 0.575);
+    }
+    </style>
+</head>
+<body class="dark-mode">
+    <div id="main">
+    <center><img src="atom.png" style="height: 120px; width: 120px; border-radius: 300%; text-align: center;" ></center>
+    <h1 style="margin-top: 0.5em; font-size: 4vw;">ELECTRONS</h1>
+    <span id="flex">
+        
+            <!-- <h1>ELECTRONS</h1> -->
+            <h2 id="slogan">Exploring The Horizon</h2>
+        
+    </span>
+</header>
+<main>
+        <div id="disc" style="color: aquamarine;">
+            <h3 style="color: blueviolet;">Welcome to the ELECTRONS</h3>
+            <p style="color: rgb(0, 255, 191);"><b>ELECTRONS is a platform where you can play games alone and get help with your homework and projects using AI. It is designed to provide a secure and user-friendly experience for all users.</b></p>
+            <p style="color: rgb(0, 255, 179);"><b>Our platform is built with the latest technologies to ensure that you have a smooth and enjoyable experience. Whether you want to get help with your studies or just relax with some games, ELECTRONS has got you covered.</b></p>
+            <p style="color: #00fff7;"><b>ELECTRONS also makes websites for you or your business, quickly and efficiently.</b></p>
+        </div>
+        <span id="container">
+            <a href="AI.html" target="_blank">
+                <div id="disc">
+                    <h2 style="color: rgb(251, 255, 0);">AI</h2>
+                    <h2 style="color: rgb(21, 255, 0);">get help with your work</h2>
+                    <h3 style="color: rgb(247, 129, 149);">with more accuracy</h3>
+                </div>
+            </a>
+            <a href="website.html" target="_blank">
+                <div id="disc">
+                    <h2 style="color: rgb(255, 136, 0);">Website</h2>
+                    <h2 style="color: rgb(183, 0, 255);">Want a website? like this one?</h2>
+                    <h3 style="color: rgb(250, 237, 56);">order a website today!</h3>
+                </div>
+            </a>
+            <a href="game.html" target="_blank">
+                <div id="disc">
+                    <h2 style="color: rgb(220, 217, 20);">GAME</h2>
+                    <h2 style="color: rgb(81, 255, 0);">play games alone</h2>
+                    <h3 style="color: rgb(253, 126, 147);">with good 2d graphics</h3>
+                </div>
+            </a>
+            <a href="mailto:rishikrishirajpandey@gmail.com?subject=Learn%20To%20Code&body=Hi!%0A I Want To Learn To Code.%0A%0AThanks!" target="_blank">
+                <div id="disc">
+                    <h2 style="color: rgb(220, 217, 20);">Learn To Code</h2>
+                    <h2 style="color: rgb(81, 255, 0);">From Founders as your Mentor</h2>
+                    <h3 style="color: rgb(253, 126, 147);"></h3>
+                </div>
+            </a>
+        </span>
+        <h3 id="AuTit">Author of Platform:</h3>
+        <p id="AuNam">THE RISHIK BHARADWAJ & THE SANSKAR KASHYAP & THE ABHISHEK GUPTA</p>
+        <center>
+            <img src="WIN_20250421_09_29_57_Pro.jpg" alt="Platform Authors">
+        </center>
+    </main>
+    <div class="bottom-links">
+        <a href="about.html">About</a>
+        <a href="team.html">Team</a>
+        <button id="mode-toggle" onclick="toggleMode()" aria-label="Toggle dark/light mode">🌙</button>
+    </div>
+    <footer>
+        &copy; 2025 ELECTRONS | all rights reserved
+    </footer>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <script>
+    function toggleMode() {
+        document.body.classList.toggle('dark-mode');
+        const btn = document.getElementById('mode-toggle');
+        if (document.body.classList.contains('dark-mode')) {
+            btn.textContent = '☀️';
+        } else {
+            btn.textContent = '🌙';
+        }
+    }
+    // Set button icon correctly on load
+    window.addEventListener('DOMContentLoaded', function() {
+        const btn = document.getElementById('mode-toggle');
+        if (document.body.classList.contains('dark-mode')) {
+            btn.textContent = '☀️';
+        } else {
+            btn.textContent = '🌙';
+        }
+    });
+    </script>
+</body>
+</html>

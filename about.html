@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ABOUT</title>
+    <link rel="stylesheet" href="about.css">
+    <style>
+        body {
+            background: linear-gradient(135deg, #232946 0%, #43b581 100%);
+            color: #fff;
+            font-family: 'Segoe UI', Arial, sans-serif;
+            margin: 0;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+        h1 {
+            margin-top: 1.2em;
+            font-size: 2.2em;
+            letter-spacing: 0.08em;
+            background: linear-gradient(90deg, #43b581, #a259ec);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-align: center;
+        }
+        main {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: flex-start;
+        }
+        .about-content {
+            background: rgba(35,41,70,0.92);
+            border-radius: 16px;
+            box-shadow: 0 4px 24px rgba(67,181,129,0.13);
+            padding: 2em 2em;
+            margin: 2em 0 1.5em 0;
+            max-width: 700px;
+            width: 90vw;
+        }
+        .about-content p {
+            font-size: 1.15em;
+            margin-bottom: 1.2em;
+        }
+        .nav-links {
+            text-align: center;
+            margin: 1.5em 0 0.5em 0;
+        }
+        .nav-links a {
+            color: #00fff7;
+            background: #181a1b;
+            text-decoration: none;
+            font-weight: bold;
+            padding: 0.5em 1.2em;
+            border-radius: 8px;
+            margin: 0 0.5em;
+            transition: background 0.2s, color 0.2s, transform 0.15s;
+            display: inline-block;
+        }
+        .nav-links a:hover {
+            background: #43b581;
+            color: #181a1b;
+            transform: scale(1.08);
+        }
+        footer {
+            color: #e0e7ff;
+            text-align: center;
+            margin-top: auto;
+            padding: 1em 0 1.2em 0;
+            font-size: 1em;
+            letter-spacing: 0.04em;
+            background: transparent;
+        }
+        @media (max-width: 700px) {
+            h1 { font-size: 1.3em; }
+            .about-content { padding: 1em 0.7em; }
+        }
+    </style>
+</head>
+<body>
+    <div class="nav-links">
+        <a href="home.html">🏠 Home</a>
+        <a href="team.html">Team</a>
+        <a href="game.html">Games</a>
+        <a href="AI.html">AI</a>
+    </div>
+    <h1>ABOUT US</h1>
+    <main>
+        <div class="about-content">
+           <p style="color: rgb(0, 255, 221);">
+            ELECTRONS is a platform where you can play games alone and get help with your homework and projects using AI. It is designed to provide a secure and user-friendly experience for all users.
+           </p>
+            <p style="color: rgb(255, 238, 0);">
+            Our platform is built with the latest technologies to ensure that you have a smooth and enjoyable experience. Whether you want to get help with your studies or just relax with some games, ELECTRONS has got you covered.
+            </p>
+            <p style="color: rgb(0, 255, 55);">
+            ELECTRONS is dedicated to fostering curiosity, collaboration, and creativity. Join us and be part of a vibrant community passionate about learning, sharing, and discovery!
+            </p>
+            <p style="color: #00fff7;">
+            <b>ELECTRONS also makes websites for individuals and businesses, helping you bring your ideas online with ease.</b>
+            </p>
+        </div>
+    </main>
+    <footer>
+        <p>&copy; 2025 ELECTRONS. All rights reserved.</p>
+    </footer>
+</body>
+</html>

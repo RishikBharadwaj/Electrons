@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TEAM</title>
+    <link rel="stylesheet" href="team.css">
+    <style>
+        body {
+            background: linear-gradient(135deg, #232946 0%, #330075 100%);
+            color: #fff;
+            font-family: 'Segoe UI', Arial, sans-serif;
+            margin: 0;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            /* Animation for background gradient */
+            animation: bgMove 12s ease-in-out infinite alternate;
+        }
+        @keyframes bgMove {
+            0% { background-position: 0% 50%; }
+            100% { background-position: 100% 50%; }
+        }
+        h1 {
+            margin-top: 1.2em;
+            font-size: 2.2em;
+            letter-spacing: 0.08em;
+            background: linear-gradient(90deg, #43b581, #a259ec);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-align: center;
+            animation: popIn 1s cubic-bezier(.4,2,.6,1);
+        }
+        @keyframes popIn {
+            0% { opacity: 0; transform: scale(0.7);}
+            80% { opacity: 1; transform: scale(1.08);}
+            
+        }
+        ul {
+            max-width: 900px;
+            margin: 2em auto 1em auto;
+            padding: 0 1em;
+            animation: fadeInMain 1.2s cubic-bezier(.4,2,.6,1);
+        }
+        @keyframes fadeInMain {
+            from { opacity: 0; transform: translateY(40px);}
+            to { opacity: 1; transform: translateY(0);}
+        }
+        li {
+            margin-bottom: 2em;
+            list-style: none;
+            animation: fadeInLi 1.2s cubic-bezier(.4,2,.6,1);
+        }
+        @keyframes fadeInLi {
+            from { opacity: 0; transform: translateX(-40px);}
+            to { opacity: 1; transform: translateX(0);}
+        }
+        pre {
+            background: rgba(35,41,70,0.92);
+            border-radius: 12px;
+            box-shadow: 0 4px 24px rgba(67,181,129,0.13);
+            padding: 1.2em 1.5em;
+            color: inherit;
+            font-size: large;
+            white-space: pre-wrap;
+            word-break: break-word;
+            animation: fadeInDisc 1.3s 0.2s cubic-bezier(.4,2,.6,1) backwards;
+            transition: box-shadow 0.2s, transform 0.2s;
+        }
+        pre:hover {
+            box-shadow: 0 8px 32px rgba(162,89,236,0.18);
+            transform: scale(1.03) rotate(-1deg);
+        }
+        @keyframes fadeInDisc {
+            from { opacity: 0; transform: scale(0.95);}
+            to { opacity: 1; transform: scale(1);}
+        }
+        h2 {
+            color: #e5ff00;
+            text-align: center;
+            margin-top: 2em;
+            animation: fadeInH2 1.2s cubic-bezier(.4,2,.6,1);
+        }
+        @keyframes fadeInH2 {
+            from { opacity: 0; transform: translateY(-30px);}
+            to { opacity: 1; transform: translateY(0);}
+        }
+        .founder-thinks {
+            color: rgb(153, 0, 255);
+            font-size: large;
+            max-width: 900px;
+            margin: 1em auto;
+            background: transparent;
+            border: none;
+            box-shadow: none;
+            white-space: pre-wrap;
+            animation: fadeInFounder 1.5s 0.5s cubic-bezier(.4,2,.6,1) backwards;
+        }
+        @keyframes fadeInFounder {
+            from { opacity: 0; filter: blur(8px);}
+            to { opacity: 1; filter: blur(0);}
+        }
+        .nav-links {
+            text-align: center;
+            margin: 1.5em 0 0.5em 0;
+            animation: fadeInLinks 1.3s 0.7s cubic-bezier(.4,2,.6,1) backwards;
+        }
+        .nav-links a {
+            color: #00fff7;
+            background: #181a1b;
+            text-decoration: none;
+            font-weight: bold;
+            padding: 0.5em 1.2em;
+            border-radius: 8px;
+            margin: 0 0.5em;
+            transition: background 0.2s, color 0.2s, transform 0.15s;
+            display: inline-block;
+        }
+        .nav-links a:hover {
+            background: #43b581;
+            color: #181a1b;
+            transform: scale(1.08) rotate(-2deg);
+        }
+        @keyframes fadeInLinks {
+            from { opacity: 0; transform: translateY(30px);}
+            to { opacity: 1; transform: translateY(0);}
+        }
+        footer {
+            color: #e0e7ff;
+            text-align: center;
+            margin-top: auto;
+            padding: 1em 0 1.2em 0;
+            font-size: 1em;
+            letter-spacing: 0.04em;
+            background: transparent;
+            animation: fadeInFooter 1.2s 1s cubic-bezier(.4,2,.6,1) backwards;
+        }
+        @keyframes fadeInFooter {
+            from { opacity: 0; transform: translateY(40px);}
+            to { opacity: 1; transform: translateY(0);}
+        }
+        @media (max-width: 700px) {
+            h1 { font-size: 1.3em; }
+            ul { padding: 0 0.3em; }
+            pre { padding: 0.7em 0.5em; font-size: 1em; }
+        }
+    </style>
+</head>
+<body>
+    <div class="nav-links">
+        <a href="home.html">🏠 Home</a>
+        <a href="about.html">About</a>
+        <a href="game.html">Games</a>
+        <a href="AI.html">AI</a>
+    </div>
+    <h1>TEAM</h1>
+    <p style="text-align:center;">Welcome to the team page!</p>
+    <p style="text-align:center;">Here you can find information about our team members.</p>
+    <p style="text-align:center; color:#00fff7;"><b>ELECTRONS also makes websites for you or your business.</b></p>
+    <ul>
+    <a href="rishik.html">
+        <li id="Rishik">Founder, <b><i>Rishik Bharadwaj</i></b>
+            <pre style="color: rgb(0, 153, 255);">
+Hello everyone!
+I am Rishik, the Founder of ELECTRONS.
+
+ELECTRONS is a platform dedicated to game, AI, chat, and website creation. My vision is to create a fun, interactive, and innovative space where you can play games, explore AI, connect with others through chat, and get your own website built easily. We are passionate about bringing together technology and community to make learning and entertainment accessible to all.
+
+Thank you for being part of our journey in game, AI, chat, and website building!
+
+Warm regards,
+Rishik
+Founder, ELECTRONS
+            </pre>
+        </li>
+    </a>    
+    <a href="advita.html">
+        <li id="Advita">co-Founder, <b><i>Advita</i></b>
+            <pre  style="color: rgb(255, 145, 0);">
+Hello everyone!
+I am Advita, the co-founder of ELECTRONS.
+
+ELECTRONS is all about game, AI, and chat. We believe in building a creative and supportive community where everyone can enjoy games, learn about AI, and chat freely. Our mission is to inspire and empower you to explore new possibilities in these exciting fields.
+
+Let’s grow together in the world of game, AI, and chat!
+
+Warm regards,
+Advita
+Co-Founder, ELECTRONS
+            </pre>
+        </li>
+    </a>    
+    <a href="abhas.html">
+        <li id="Abhas">owner partner, <i><b>Abhas KASHYAP</b></i>
+            <pre  style="color: rgb(179, 255, 0);">
+Hello everyone!
+I am Abhas KASHYAP, the owner partner of ELECTRONS.
+
+At ELECTRONS, we focus on game, AI, and chat. My goal is to help create a welcoming environment where everyone can enjoy gaming, learn about artificial intelligence, and chat with friends. Together, we can make this platform a vibrant hub for creativity and fun.
+
+Thank you for joining us in the world of game, AI, and chat!
+
+Warm regards,
+Abhas Kashyap
+owner partner, ELECTRONS
+            </pre>
+        </li>
+    </a>
+    <a href="abhishek.html">
+        <li id="Abhishek">comunity leader, <b><i>Abhishek Gupta</i></b>
+            <pre style="color: rgb(0, 132, 255);">
+Hello everyone!
+I am Abhishek Gupta, the Owner Partner of ELECTRONS.
+
+ELECTRONS is your space for game, AI, and chat. My role is to support our community as we play games, explore AI, and connect through chat. I believe that everyone can contribute and benefit from our shared passion for technology and fun.
+
+Let’s make ELECTRONS the best place for game, AI, and chat!
+
+Warm regards,
+Abhishek Gupta
+Community Leader, ELECTRONS
+            </pre>
+        </li>
+    </a>
+    </ul>
+    <h2>What the Founder Thinks</h2>
+    <pre class="founder-thinks">
+ELECTRONS is more than just a website—it's a secure, user-friendly platform where you can chat, get help with your studies, play games, and even get your own website made.
+My vision is to create a community that inspires, educates, and connects people through the latest technology, making learning and collaboration fun and accessible for everyone.
+    </pre>
+    <footer>
+        <p>Contact us at <a href="mailto:rishikrishirajpandey@gmail.com" style="color:#43b581;">rishikrishirajpandey@gmail.com</a></p>
+        <p>&copy; 2025 ELECTRONS. All rights reserved.</p>
+    </footer>
+</body>
+</html>

@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Electrons Jarvis AI</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        body { background-image: url(ai.png);
+            background-size: cover;
+            background-position: center;
+         font-family: 'Segoe UI', 'Roboto', Arial, sans-serif; margin: 0; }
+        #chat { background: #232946; border-radius: 1em; max-width: 600px; margin: 2em auto; padding: 2em; box-shadow: 0 4px 32px #000a; }
+        #messages { height: 300px; overflow-y: auto; margin-bottom: 1em; }
+        .msg { margin: 0.5em 0; }
+        .user { color: rgb(179, 255, 0); }
+        .ai { color: #c0a9ff; font-family: cursive; }
+        #input { width: 80%; padding: 0.7em; border-radius: 0.5em; border: none; }
+        #send { padding: 0.7em 1.5em; border-radius: 0.5em; border: none; background: #00fff7; color: #181a1b; font-weight: bold; cursor: pointer; }
+        #send:hover { background: #b700ff; color: #fff; }
+        .nav-links {
+            text-align: center;
+            margin: 1.5em 0 0.5em 0;
+        }
+        .nav-links a {
+            color: #00fff7;
+            background: #181a1b;
+            text-decoration: none;
+            font-weight: bold;
+            padding: 0.5em 1.2em;
+            border-radius: 8px;
+            margin: 0 0.5em;
+            transition: background 0.2s, color 0.2s, transform 0.15s;
+            display: inline-block;
+        }
+        .nav-links a:hover {
+            background: #43b581;
+            color: #181a1b;
+            transform: scale(1.08);
+        }
+        footer {
+            color: #e0e7ff;
+            text-align: center;
+            margin-top: 2em;
+            padding: 1em 0 1.2em 0;
+            font-size: 1em;
+            letter-spacing: 0.04em;
+        }
+        @media (max-width: 700px) {
+            #chat { padding: 1em; }
+            #input { width: 70%; }
+        }
+    </style>
+</head>
+<body>
+    <div class="nav-links">
+        <a href="home.html">🏠 Home</a>
+        <a href="about.html">About</a>
+        <a href="team.html">Team</a>
+        <a href="game.html">Games</a>
+    </div>
+    <div id="chat">
+        <h2 style="text-align:center;color:#00fff7;">Electrons Jarvis AI</h2>
+        <div id="messages"></div>
+        <input id="input" placeholder="Type your message..." autocomplete="off" />
+        <button id="send">Send</button>
+    </div>
+    <footer>
+        &copy; 2025 ELECTRONS | All rights reserved<br>
+        <span style="color:#00fff7;"><b>ELECTRONS also makes websites for you or your business.</b></span>
+    </footer>
+    <script>
+        const messages = document.getElementById('messages');
+        const input = document.getElementById('input');
+        const send = document.getElementById('send');
+
+        function appendMsg(sender, text) {
+            const div = document.createElement('div');
+            div.className = 'msg ' + (sender === 'You' ? 'user' : 'ai');
+            div.textContent = sender + ': ' + text;
+            messages.appendChild(div);
+            messages.scrollTop = messages.scrollHeight;
+        }
+
+        async function aiReplyOnline(text) {
+            // Replace 'YOUR_TOGETHER_API_KEY' with your actual Together AI API key
+            const apiKey = '6eac0f038df5b05a02bdb66363a6ea4ce2d9f046c9c6ef420a214f53a4de56a1'; // Example key, replace with your own
+            if (!apiKey) {
+                return "Please set your Together AI API key.";
+            }
+            const endpoint = 'https://api.together.xyz/v1/chat/completions';
+            const payload = {
+                model: "mistralai/Mixtral-8x7B-Instruct-v0.1",
+                messages: [
+                    { role: "system", content: "You are a inteligent assistant.Your name is Jarvis. You are created by Rishik Bharadwaj and Electrons Team" },
+                    { role: "user", content: text }
+                ],
+                max_tokens: 128,
+                temperature: 0.7
+            };
+            try {
+                const response = await fetch(endpoint, {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json",
+                        "Authorization": `Bearer ${apiKey}`
+                    },
+                    body: JSON.stringify(payload)
+                });
+                if (!response.ok) throw new Error("API error");
+                const data = await response.json();
+                return data.choices && data.choices[0] && data.choices[0].message && data.choices[0].message.content
+                    ? data.choices[0].message.content.trim()
+                    : "Sorry, I couldn't get a response from Together AI.";
+            } catch (e) {
+                return "Error contacting Together AI: " + e.message;
+            }
+        }
+
+        send.onclick = async () => {
+            const text = input.value.trim();
+            if (!text) return;
+            appendMsg('You', text);
+            input.value = '';
+            appendMsg('AI', '...');
+            const aiMsgDiv = messages.lastChild;
+            const reply = await aiReplyOnline(text);
+            aiMsgDiv.textContent = 'AI: ' + reply;
+        };
+
+        input.addEventListener('keydown', e => { if (e.key === 'Enter') send.onclick(); });
+    </script>
+</body>
+</html>

@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Game</title>
+    <style>
+        body {
+            background-image: url("game.jpg");
+            background-size: cover;
+            background-position: center;
+            font-family: 'Segoe UI', Arial, sans-serif;
+            margin: 0;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        h1 {
+            margin-top: 2em;
+            font-size: 2.5em;
+            letter-spacing: 0.08em;
+            background: linear-gradient(90deg, #43b581, #a259ec);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .game-list {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5em;
+            margin: 3em 0 2em 0;
+            width: 100%;
+            max-width: 400px;
+        }
+        .game-link {
+            text-decoration: none;
+        }
+        .game-card {
+            background: rgba(35,41,70,0.92);
+            border-radius: 14px;
+            box-shadow: 0 4px 24px rgba(67,181,129,0.13);
+            padding: 1.2em 2em;
+            text-align: center;
+            font-size: 1.3em;
+            font-weight: bold;
+            color: #43b581;
+            transition: background 0.2s, color 0.2s, transform 0.15s;
+            cursor: pointer;
+        }
+        .game-card:hover {
+            background: #43b581;
+            color: #232946;
+            transform: scale(1.05) rotate(-2deg);
+        }
+        .back-links {
+            margin: 2em 0 1em 0;
+            text-align: center;
+        }
+        .back-links a {
+            color: #a259ec;
+            background: #181c2f;
+            text-decoration: none;
+            font-weight: bold;
+            padding: 0.5em 1.2em;
+            border-radius: 8px;
+            margin: 0 0.5em;
+            transition: background 0.2s, color 0.2s, transform 0.15s;
+            display: inline-block;
+        }
+        .back-links a:hover {
+            background: #43b581;
+            color: #181c2f;
+            transform: scale(1.08);
+        }
+        footer {
+            color: #e0e7ff;
+            text-align: center;
+            margin-top: auto;
+            padding: 1em 0 1.2em 0;
+            font-size: 1em;
+            letter-spacing: 0.04em;
+        }
+        @media (max-width: 600px) {
+            h1 {
+                font-size: 2em;
+            }
+            .game-card {
+                font-size: 1em;
+                padding: 1em 0.7em;
+            }
+        }
+    </style>
+</head>
+<body>
+    <h1>Games</h1>
+    <div class="game-list">
+        <a class="game-link" href="missile command.html" target="_blank">
+            <div class="game-card" id="missile">Missile Command</div>
+        </a>
+        <a class="game-link" href="snake.html" target="_blank">
+            <div class="game-card" id="snake">Snake Game</div>
+        </a>
+        <a class="game-link" href="ping.html" target="_blank">
+            <div class="game-card" id="ping">Ping Pong</div>
+        </a>
+    </div>
+    <div class="back-links">
+        <a href="home.html">🏠 Home</a>
+        <a href="about.html">About</a>
+        <a href="team.html">Team</a>
+    </div>
+    <footer>
+        &copy; 2025 ELECTRONS | All rights reserved<br>
+    </footer>
+</body>
+</html>

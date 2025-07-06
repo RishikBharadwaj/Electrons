@@ -1,0 +1,238 @@
+/* Base color variables for light mode */
+:root {
+    --bg-main: #181c1f;
+    --bg-secondary: #23272b;
+    --text-main: #f4f4f4;
+    --accent: #00ffe5;
+    --accent2: #e5ff00;
+    --card-bg: #222c36;
+    --shadow: 0 2px 10px rgba(0,0,0,0.7);
+    --ul-bg: #1a2636;
+    --li-bg: #22384a;
+    --li-hover: #00d9ff44;
+    --pre-bg: #23272b;
+    --aside-bg: #2c2c2c;
+}
+
+/* Light mode overrides */
+@media (prefers-color-scheme: light) {
+    :root {
+        --bg-main: #f4f4f4;
+        --bg-secondary: #30ad83;
+        --text-main: #181c1f;
+        --accent: #00ffe5;
+        --accent2: #e5ff00;
+        --card-bg: #30ad83;
+        --shadow: 0 2px 10px rgba(0,0,0,0.2);
+        --ul-bg: cornflowerblue;
+        --li-bg: #006a9494;
+        --li-hover: #00d9ffbd;
+        --pre-bg: #fff;
+        --aside-bg: lightgray;
+    }
+}
+
+body {
+    font-family: 'Segoe UI', Arial, sans-serif;
+    background-color: var(--bg-main);
+    color: var(--text-main);
+    margin: 0;
+    padding: 20px;
+    background-image: url(Screenshot_20230523-235122_Facebook.jpg);
+    background-size: cover;
+    background-attachment: fixed;
+    min-height: 100vh;
+    transition: background 0.3s, color 0.3s;
+}
+
+h1 {
+    color: var(--accent2);
+    background-color: var(--accent)33;
+    width: 100%;
+    text-align: center;
+    padding: 2vw 0;
+    border-radius: 10px;
+    box-shadow: var(--shadow);
+    margin-bottom: 2vw;
+    font-size: clamp(1.5rem, 5vw, 3rem);
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    transition: background 0.3s, color 0.3s;
+}
+
+p {
+    font-size: clamp(1rem, 2vw, 1.2rem);
+    line-height: 1.6;
+    max-width: 900px;
+    margin: 1.5vw auto;
+    padding: 1.5vw;
+    background-color: var(--bg-secondary);
+    border-radius: 8px;
+    box-shadow: var(--shadow);
+    transition: background 0.3s, color 0.3s;
+}
+
+ul {
+    list-style-type: none;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    background-color: var(--ul-bg);
+    border-radius: 10px;
+    margin: 0 auto 2vw auto;
+    max-width: 900px;
+    box-shadow: var(--shadow);
+    transition: background 0.3s;
+}
+
+li {
+    margin: 1vw 0;
+    padding: 2vw;
+    background-color: var(--li-bg);
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+    transition: background-color 0.3s;
+    font-size: clamp(1rem, 2vw, 1.2rem);
+    position: relative;
+}
+
+li:hover {
+    background-color: var(--li-hover);
+}
+
+a {
+    text-decoration: none;
+    color: var(--text-main);
+    font-weight: 600;
+    transition: color 0.3s;
+}
+
+a:hover {
+    color: var(--accent);
+    text-shadow: 0 0 5px var(--accent);
+}
+
+img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 8px;
+}
+
+pre {
+    font-family: 'Fira Mono', 'Consolas', 'Menlo', monospace;
+    word-wrap: break-word;
+    color: var(--accent);
+    background: var(--pre-bg);
+    border-radius: 8px;
+    padding: 1vw;
+    margin: 1vw 0 0 0;
+    font-size: clamp(0.95rem, 1.2vw, 1.1rem);
+    box-shadow: 0 1px 4px rgba(0,0,0,0.2);
+    overflow-x: auto;
+    transition: background 0.3s, color 0.3s;
+}
+
+aside {
+    width: 100%;
+    max-width: 350px;
+    padding: 1vw;
+    margin: 1vw auto;
+    float: none;
+    font-style: italic;
+    background-color: var(--aside-bg);
+    border-radius: 20px;
+    color: var(--text-main);
+    box-shadow: var(--shadow);
+    transition: background 0.3s, color 0.3s;
+}
+
+/* Responsive design */
+@media (max-width: 700px) {
+    h1 {
+        font-size: 6vw;
+        padding: 4vw 0;
+    }
+    ul {
+        max-width: 100%;
+        border-radius: 0;
+    }
+    li {
+        padding: 4vw 2vw;
+        font-size: 1rem;
+    }
+    p {
+        padding: 3vw 2vw;
+        font-size: 1rem;
+    }
+    aside {
+        max-width: 100%;
+        padding: 3vw 2vw;
+        border-radius: 10px;
+    }
+}
+
+@media (max-width: 500px) {
+    body {
+        padding: 2vw;
+    }
+    h1 {
+        font-size: 8vw;
+        padding: 6vw 0;
+    }
+    li {
+        padding: 6vw 3vw;
+    }
+    p, aside {
+        padding: 5vw 3vw;
+    }
+}
+
+/* Optional: subtle glass effect for cards in dark mode */
+@media (prefers-color-scheme: dark) {
+    li, p, aside {
+        backdrop-filter: blur(2px);
+        background-color: rgba(34, 44, 54, 0.85);
+    }
+}
+    /* Responsive styles */
+    body {
+        margin: 0;
+        padding: 0;
+        font-family: Arial, sans-serif;
+        box-sizing: border-box;
+    }
+    h1, h2 {
+        word-break: break-word;
+    }
+    ul {
+        padding-left: 1em;
+        max-width: 900px;
+        margin: 0 auto;
+    }
+    pre {
+        white-space: pre-wrap;
+        word-break: break-word;
+        max-width: 100%;
+        box-sizing: border-box;
+    }
+    @media (max-width: 600px) {
+        h1 {
+            font-size: 1.7em;
+        }
+        h2 {
+            font-size: 1.2em;
+        }
+        ul {
+            padding-left: 0.5em;
+        }
+        pre {
+            font-size: 1em !important;
+            padding: 0.5em;
+        }
+        body, p, li {
+            font-size: 1em;
+        }
+        .team-member {
+            margin-bottom: 1.5em;
+        }
+    }

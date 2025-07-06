@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Ping Pong | ELECTRONS</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        body {
+            background: linear-gradient(135deg, #232946 0%, #43b581 100%);
+            color: #fff;
+            font-family: 'Segoe UI', Arial, sans-serif;
+            margin: 0;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        h1 {
+            margin-top: 1.2em;
+            font-size: 2.2em;
+            letter-spacing: 0.08em;
+            background: linear-gradient(90deg, #43b581, #a259ec);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-align: center;
+        }
+        .game-container {
+            margin: 1.5em 0 1em 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        canvas {
+            background: #000;
+            border: 2px solid #fff;
+            border-radius: 12px;
+            box-shadow: 0 4px 24px rgba(67,181,129,0.13);
+            margin-bottom: 1em;
+            display: block;
+        }
+        .score {
+            font-size: 1.2em;
+            color: #43b581;
+            margin-bottom: 1em;
+        }
+        .back-links {
+            margin: 1.5em 0 1em 0;
+            text-align: center;
+        }
+        .back-links a {
+            color: #a259ec;
+            background: #181c2f;
+            text-decoration: none;
+            font-weight: bold;
+            padding: 0.5em 1.2em;
+            border-radius: 8px;
+            margin: 0 0.5em;
+            transition: background 0.2s, color 0.2s, transform 0.15s;
+            display: inline-block;
+        }
+        .back-links a:hover {
+            background: #43b581;
+            color: #181c2f;
+            transform: scale(1.08);
+        }
+        footer {
+            color: #e0e7ff;
+            text-align: center;
+            margin-top: auto;
+            padding: 1em 0 1.2em 0;
+            font-size: 1em;
+            letter-spacing: 0.04em;
+        }
+        .controls {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 1em;
+            margin-bottom: 1.5em;
+            margin-top: 0.5em;
+            user-select: none;
+        }
+        .ctrl-btn {
+            background: #232946;
+            color: #43b581;
+            border: none;
+            border-radius: 8px;
+            font-size: 1.5em;
+            font-weight: bold;
+            width: 2.5em;
+            height: 2.5em;
+            margin: 0.2em;
+            cursor: pointer;
+            box-shadow: 0 2px 8px rgba(67,181,129,0.10);
+            transition: background 0.2s, color 0.2s, transform 0.1s;
+        }
+        .ctrl-btn:active, .ctrl-btn:focus {
+            background: #43b581;
+            color: #232946;
+            transform: scale(1.08);
+        }
+        @media (max-width: 700px) {
+            h1 { font-size: 1.3em; }
+            canvas { width: 98vw !important; height: 60vw !important; max-width: 98vw; max-height: 70vw; }
+        }
+    </style>
+</head>
+<body>
+    <h1>Ping Pong</h1>
+    <div class="game-container">
+        <div class="score" id="score">Player: 0 &nbsp;|&nbsp; AI: 0</div>
+        <canvas id="game" width="500" height="350"></canvas>
+        <div style="color:#a259ec; margin-bottom:1em;">Use <b>↑</b> and <b>↓</b> arrow keys, touch, or buttons to move your paddle.</div>
+        <div class="controls">
+            <button class="ctrl-btn" id="up" aria-label="Up">▲</button>
+            <button class="ctrl-btn" id="down" aria-label="Down">▼</button>
+        </div>
+    </div>
+    <div class="back-links">
+        <a href="game.html">🎮 All Games</a>
+        <a href="home.html">🏠 Home</a>
+        <a href="about.html">About</a>
+        <a href="team.html">Team</a>
+    </div>
+    <footer>
+        &copy; 2025 ELECTRONS | All rights reserved<br>
+        <span style="color:#00fff7;"><b>ELECTRONS also makes websites for you or your business.</b></span>
+    </footer>
+    <script>
+        const canvas = document.getElementById('game');
+        const ctx = canvas.getContext('2d');
+        const paddleHeight = 60, paddleWidth = 10;
+        const ballRadius = 8;
+        let playerY = (canvas.height - paddleHeight) / 2;
+        let aiY = (canvas.height - paddleHeight) / 2;
+        let playerScore = 0, aiScore = 0;
+        let ballX = canvas.width / 2, ballY = canvas.height / 2;
+        let ballSpeedX = 5 * (Math.random() > 0.5 ? 1 : -1);
+        let ballSpeedY = 3 * (Math.random() > 0.5 ? 1 : -1);
+        let upPressed = false, downPressed = false;
+        let gameOver = false;
+
+        function draw() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+            // Draw net
+            ctx.fillStyle = "#a259ec";
+            for (let i = 0; i < canvas.height; i += 20) {
+                ctx.fillRect(canvas.width / 2 - 1, i, 2, 10);
+            }
+
+            // Draw paddles
+            ctx.fillStyle = "#43b581";
+            ctx.fillRect(0, playerY, paddleWidth, paddleHeight);
+            ctx.fillStyle = "#a259ec";
+            ctx.fillRect(canvas.width - paddleWidth, aiY, paddleWidth, paddleHeight);
+
+            // Draw ball
+            ctx.beginPath();
+            ctx.arc(ballX, ballY, ballRadius, 0, Math.PI * 2);
+            ctx.fillStyle = "#fff";
+            ctx.fill();
+            ctx.closePath();
+
+            // Draw score
+            document.getElementById('score').textContent = `Player: ${playerScore}  |  AI: ${aiScore}`;
+        }
+
+        function resetBall() {
+            ballX = canvas.width / 2;
+            ballY = canvas.height / 2;
+            ballSpeedX = 5 * (Math.random() > 0.5 ? 1 : -1);
+            ballSpeedY = 3 * (Math.random() > 0.5 ? 1 : -1);
+        }
+
+        function update() {
+            if (gameOver) return;
+
+            // Player paddle movement
+            if (upPressed) playerY -= 7;
+            if (downPressed) playerY += 7;
+            playerY = Math.max(0, Math.min(canvas.height - paddleHeight, playerY));
+
+            // AI paddle movement (simple AI)
+            if (ballY < aiY + paddleHeight / 2) aiY -= 5;
+            else if (ballY > aiY + paddleHeight / 2) aiY += 5;
+            aiY = Math.max(0, Math.min(canvas.height - paddleHeight, aiY));
+
+            // Ball movement
+            ballX += ballSpeedX;
+            ballY += ballSpeedY;
+
+            // Top/bottom wall collision
+            if (ballY - ballRadius < 0 || ballY + ballRadius > canvas.height) {
+                ballSpeedY = -ballSpeedY;
+            }
+
+            // Player paddle collision
+            if (
+                ballX - ballRadius < paddleWidth &&
+                ballY > playerY && ballY < playerY + paddleHeight
+            ) {
+                ballSpeedX = -ballSpeedX;
+                ballX = paddleWidth + ballRadius; // prevent sticking
+            }
+
+            // AI paddle collision
+            if (
+                ballX + ballRadius > canvas.width - paddleWidth &&
+                ballY > aiY && ballY < aiY + paddleHeight
+            ) {
+                ballSpeedX = -ballSpeedX;
+                ballX = canvas.width - paddleWidth - ballRadius; // prevent sticking
+            }
+
+            // Score
+            if (ballX - ballRadius < 0) {
+                aiScore++;
+                resetBall();
+            }
+            if (ballX + ballRadius > canvas.width) {
+                playerScore++;
+                resetBall();
+            }
+
+            // Game over (optional: first to 7)
+            if (playerScore === 7 || aiScore === 7) {
+                gameOver = true;
+                setTimeout(() => {
+                    ctx.fillStyle = "#ff1744";
+                    ctx.font = "2em Arial";
+                    ctx.textAlign = "center";
+                    ctx.fillText(playerScore === 7 ? "You Win!" : "AI Wins!", canvas.width / 2, canvas.height / 2);
+                    ctx.font = "1.2em Arial";
+                    ctx.fillText(`Player: ${playerScore} | AI: ${aiScore}`, canvas.width / 2, canvas.height / 2 + 40);
+                }, 100);
+                return;
+            }
+
+            draw();
+        }
+
+        document.addEventListener('keydown', e => {
+            if (e.key === 'ArrowUp') upPressed = true;
+            if (e.key === 'ArrowDown') downPressed = true;
+            if (e.key === ' ' && gameOver) restart();
+        });
+        document.addEventListener('keyup', e => {
+            if (e.key === 'ArrowUp') upPressed = false;
+            if (e.key === 'ArrowDown') downPressed = false;
+        });
+
+        // Controller buttons
+        document.getElementById('up').ontouchstart = document.getElementById('up').onmousedown = function(e) {
+            upPressed = true;
+            e.preventDefault();
+        };
+        document.getElementById('up').ontouchend = document.getElementById('up').onmouseup = function(e) {
+            upPressed = false;
+            e.preventDefault();
+        };
+        document.getElementById('down').ontouchstart = document.getElementById('down').onmousedown = function(e) {
+            downPressed = true;
+            e.preventDefault();
+        };
+        document.getElementById('down').ontouchend = document.getElementById('down').onmouseup = function(e) {
+            downPressed = false;
+            e.preventDefault();
+        };
+
+        // Touch controls for mobile
+        canvas.addEventListener('touchstart', function(e) {
+            const t = e.touches[0];
+            if (t.clientX < canvas.width / 2) upPressed = true;
+            else downPressed = true;
+        });
+        canvas.addEventListener('touchend', function(e) {
+            upPressed = false;
+            downPressed = false;
+        });
+
+        function restart() {
+            playerScore = 0;
+            aiScore = 0;
+            playerY = (canvas.height - paddleHeight) / 2;
+            aiY = (canvas.height - paddleHeight) / 2;
+            resetBall();
+            gameOver = false;
+            draw();
+        }
+
+        draw();
+        setInterval(update, 1000 / 60);
+    </script>
+</body>
+</html>
